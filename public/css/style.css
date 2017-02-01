@@ -1,0 +1,14 @@
+.fa {
+	width: 20px;
+	text-align: center;
+}
+p.helper {
+	padding: 15px;
+}
+.header {
+	padding-top: 50px;
+	padding-bottom: 50px;
+	background-image: url('http://i.imgur.com/pG7KSR9.jpg');
+	background-position: bottom;
+	background-size: cover;
+}
