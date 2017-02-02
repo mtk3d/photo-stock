@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
 class HomeController extends Controller
 {
@@ -13,7 +15,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
 
     /**
@@ -23,6 +25,46 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $photos = DB::table('photos')->inRandomOrder()->get();
+        $data = array(
+                'active' => 'random', 
+                'title' => 'Random',
+                'photos' => $photos
+                );
+        return view('home', $data);
+    }
+
+    public function newest()
+    {
+        $photos = DB::table('photos')->get();
+        $data = array(
+                'active' => 'newest', 
+                'title' => 'Newest',
+                'photos' => $photos
+                );
+            return view('home', $data);
+    }
+
+    public function popular()
+    {
+        $photos = DB::table('photos')->get();
+        $data = array(
+                'active' => 'popular', 
+                'title' => 'Popular',
+                'photos' => $photos
+                );
+
+            return view('home', $data);
+    }
+
+    public function topRated()
+    {
+        $photos = DB::table('photos')->get();
+        $data = array(
+                'active' => 'top-rated', 
+                'title' => 'Top rated',
+                'photos' => $photos
+                );
+            return view('home', $data);
     }
 }

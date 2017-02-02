@@ -1,88 +1,105 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+    <title>{{ config('app.name', 'Laravel') }} - @yield('title')</title>
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <!-- Styles -->
-    <link href="/css/app.css" rel="stylesheet">
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/css/bootstrap-theme.min.css" rel="stylesheet">
-
-    <!-- Scripts -->
-    <script>
-        window.Laravel = {!! json_encode([
-            'csrfToken' => csrf_token(),
-        ]) !!};
-    </script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url('') }}/css/style.css">
+    <link rel="stylesheet" type="text/css" href="{{ url('') }}/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ url('') }}/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ url('') }}/css/font-awesome.min.css">
 </head>
 <body>
-    <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
-            <div class="container">
-                <div class="navbar-header">
+<div class="container-fluid header">
+	<div class="container">
+    <nav class="navbar navbar-default">
+      <div class="navbar-header">
+         <a class="navbar-brand" href="/">Photo stack</a>
+      </div>
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	      <form class="navbar-form navbar-left" role="search">
+	        <div class="form-group">
+	          <input type="text" class="form-control main-search-box" placeholder="Search">
+	        </div>
+	        <button type="submit" class="btn btn-default"><i class="fa fa-search" aria-hidden="true"></i></button>
+	      </form>
+		    <ul class="nav navbar-nav navbar-right">
+	        @if (Route::has('login'))
+	          @if (Auth::check())
+	            <li class="dropdown">
+	              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="badge">5</span> {{ Auth::user()->name }}<span class="caret"></span></a>
+	              <ul class="dropdown-menu">
+	 		            <!-- <li><a href="{{ url('photos/add') }}"><i class="fa fa-camera" aria-hidden="true"></i> Add photo</a></li> -->
+	    	          <li><a href="{{ url('photos') }}"><i class="fa fa-picture-o" aria-hidden="true"></i> My photos <span class="badge">3</span></a></li>
+	                <li><a href="#"><i class="fa fa-envelope" aria-hidden="true"></i> Messages <span class="badge">2</span></a></li>
+	                <li role="separator" class="divider"></li>
+	                <li><a href="#"><i class="fa fa-cog" aria-hidden="true"></i> Settings</a></li>
+	              	<li>
+	                  <a href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+	                    <i class="fa fa-sign-out" aria-hidden="true"></i> Logout
+	                  </a>
+										<form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+	                    {{ csrf_field() }}
+	                  </form>
+	                </li>
+	              </ul>
+	            </li>
+	          @else
+	              <li><a href="{{ url('/register') }}">Register</a></li>
+	              <li><a href="{{ url('/login') }}">Login</a></li>
+	          @endif
+	        @endif
+	      </ul>
+	      <a class="btn btn-primary navbar-btn" href="{{ url('photos/add') }}" role="button"><i class="fa fa-plus" aria-hidden="true"></i> Add photo</a>
+    	</div>
+  	</nav>
+	</div>
+</div>
+<!-- <div class="alert alert-info alert-dismissible fade in" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button> You are logged in! </div>  -->
 
-                    <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
+    	@yield('content')  
 
-                    <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
-                    </a>
-                </div>
 
-                <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        &nbsp;
-                    </ul>
+<div class="container-fluid footer text-center">
+	<p class="text-muted">
+		&copy; Copyright
+	</p>
+</div>
 
-                    <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
-                        <!-- Authentication Links -->
-                        @if (Auth::guest())
-                            <li><a href="{{ url('/login') }}">Login</a></li>
-                            <li><a href="{{ url('/register') }}">Register</a></li>
-                        @else
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
 
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="{{ url('/logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
-
-                                        <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                                </ul>
-                            </li>
-                        @endif
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        @yield('content')
-    </div>
-    <!-- Scripts -->
-    <script src="/js/app.js"></script>
+<script type="text/javascript" src="{{ url('') }}/js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="{{ url('') }}/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('dropdown-toggle').dropdown()
+        $().alert('close')
+    });
+    $(function () {
+		  $('[data-toggle="tooltip"]').tooltip()
+		})
+		function clearPhotoInput() {
+			$("#photo-input").val('');
+			$("#image-preview-container").hide();
+			$("#photo-input").show();
+		}
+		function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            
+            reader.onload = function (e) {
+                $('#preview-image').attr('src', e.target.result);
+            }
+            
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    
+    $("#photo-input").change(function(){
+      readURL(this);
+      $("#image-preview-container").show();
+			$("#photo-input").hide();
+    });
+</script>
 </body>
 </html>

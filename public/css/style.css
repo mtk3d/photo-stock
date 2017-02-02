@@ -1,5 +1,5 @@
 .fa {
-	width: 20px;
+	min-width: 20px;
 	text-align: center;
 }
 p.helper {
@@ -11,4 +11,44 @@ p.helper {
 	background-image: url('http://i.imgur.com/pG7KSR9.jpg');
 	background-position: bottom;
 	background-size: cover;
+	margin-bottom: 20px;
+}
+.thumbnails {
+	
+}
+.thumbnail-container {
+  margin-bottom: 10px;
+  width: 25%;
+  float: left;
+  padding: 5px;
+}
+.footer {
+	background-color: #f5f5f5;
+	padding: 20px;
+	margin-top: 50px;
+}
+.front-page-menu {
+	margin-bottom: 20px;
+}
+.drag-and-drop {
+	border: 1px dashed #ccc;
+	width: 100%;
+	padding: 50px;
+	border-radius: 4px;
+}
+.drag-and-drop:hover {
+	background-color: #f9f9f9;
+}
+.image-preview {
+	border: 1px solid #ccc;
+	width: 100%;
+	border-radius: 4px;
+	padding: 5px;
+}
+.image-preview .trash {
+
+}
+.image-preview img{
+	width: 100%;
+	margin-bottom: 5px;
 }

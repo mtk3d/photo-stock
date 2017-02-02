@@ -11,14 +11,21 @@
 |
 */
 
-Route::get('/', function () {
-    return view('front');
-});
+/*Route::get('/', function () {
+    return view('home', ['title'=>'Home', 'active' => 'random']);
+});*/
 
+
+Route::get('/', 'HomeController@index');
+Route::get('/home', 'HomeController@index');
+Route::get('/random', 'HomeController@index');
+Route::get('/newest', 'HomeController@newest');
+Route::get('/popular', 'HomeController@popular');
+Route::get('/top-rated', 'HomeController@topRated');
+Route::get('/photos', 'PhotosController@myPhotos');
+Route::get('/photos/add', 'PhotosController@addPhoto');
 
 Auth::routes();
-
-// Route::get('/home', 'HomeController@index');
-Route::get('/home', function () {
-    return view('front');
-});
+// Route::get('/home', function () {
+//     return view('front');
+// });

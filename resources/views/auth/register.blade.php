@@ -1,4 +1,4 @@
-@extends('layouts.photo-app')
+@extends('layouts.app')
 
 @section('title', 'Register')
 
