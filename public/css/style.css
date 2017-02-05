@@ -64,7 +64,7 @@ p.helper {
 	margin-bottom: 5px;
 }
 .image {
-	max-width: 100%;
+	width: 100%;
 	border: 1px solid #ccc;
 	border-radius: 4px;
 	padding: 4px;

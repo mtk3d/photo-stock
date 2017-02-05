@@ -16,7 +16,7 @@
 	<div class="col-sm-offset-2 col-sm-10">
 		<h1>Add new photo</h1>
 	</div>
-	<form action="/photos" method="POST" class="form-horizontal">
+	<form action="/photos" method="POST" class="form-horizontal" enctype="multipart/form-data">
 	{{ csrf_field() }}
 		<div class="form-group @if ($errors->has('photo')) has-error @endif">
 			<label for="photo-input" class="col-sm-2 control-label">Photo:</label>
@@ -50,6 +50,7 @@
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
 				<button type="submit" class="btn btn-success">Add</button>
+
 			</div>
 		</div>
 	</form>

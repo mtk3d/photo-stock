@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Photo;
+use Illuminate\Support\Facades\Storage;
 
 class HomeController extends Controller
 {
@@ -37,7 +38,7 @@ class HomeController extends Controller
 
     public function newest()
     {
-        $photos = Photo::find([1, 3]);
+        $photos = Photo::all();
         $data = array(
                 'active' => 'newest', 
                 'title' => 'Newest',

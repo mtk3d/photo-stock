@@ -9,6 +9,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Routing\UrlGenerator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\UploadedFile;
+use Image; 
 
 class PhotosController extends Controller
 {
@@ -54,14 +56,24 @@ class PhotosController extends Controller
             		'tags' => 'required|max:255'
 		]);
 		$request->flash();
+
+		$name = md5(microtime());
+
+		$path = $request->file('photo')->storeAs('public/images', $name.'.jpeg');
 		$photo = new Photo;
-		$photo->name = md5(uniqid(rand(), true));
+		$photo->name = $name;
 		$photo->title = $request->title;
 		$photo->description = $request->description;
 		$photo->description = $request->description;
 		$photo->tags = $request->tags;
 		$photo->user_id = Auth::id();
 		$photo->save();
+
+		$img = Image::make($request->file('photo')->getRealPath());
+		$img->resize(600, null, function ($constraint) {
+   			$constraint->aspectRatio();
+		});
+       	$img->save('storage/images/thumbnails/'.$name.'.jpeg');
 
 		return redirect('photos')->with('success', 'Your photo has been uploaded!');
 	}

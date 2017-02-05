@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="container">
-    	<img src="{{ url('/') }}/storage/images/{{ $photo->name }}.jpg" alt="..." class="image">
+    	<img src="{{ Storage::url('images/'.$photo->name.'.jpeg') }}" alt="..." class="image">
     	@if (Route::has('login'))
 		@if (Auth::check())
 			@if (Auth::id() == $photo->user_id)
