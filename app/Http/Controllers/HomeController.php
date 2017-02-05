@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Photo;
 
 class HomeController extends Controller
 {
@@ -25,7 +26,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $photos = DB::table('photos')->inRandomOrder()->get();
+        $photos = Photo::inRandomOrder()->get();
         $data = array(
                 'active' => 'random', 
                 'title' => 'Random',
@@ -36,7 +37,7 @@ class HomeController extends Controller
 
     public function newest()
     {
-        $photos = DB::table('photos')->get();
+        $photos = Photo::find([1, 3]);
         $data = array(
                 'active' => 'newest', 
                 'title' => 'Newest',
@@ -47,7 +48,7 @@ class HomeController extends Controller
 
     public function popular()
     {
-        $photos = DB::table('photos')->get();
+        $photos = Photo::take(2)->get();
         $data = array(
                 'active' => 'popular', 
                 'title' => 'Popular',
@@ -59,7 +60,7 @@ class HomeController extends Controller
 
     public function topRated()
     {
-        $photos = DB::table('photos')->get();
+        $photos = Photo::orderBy('id', 'desc')->get();
         $data = array(
                 'active' => 'top-rated', 
                 'title' => 'Top rated',

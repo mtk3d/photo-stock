@@ -16,14 +16,16 @@
 });*/
 
 
-Route::get('/', 'HomeController@index');
-Route::get('/home', 'HomeController@index');
+Route::get('/', function () {
+    return redirect('/random');
+});
 Route::get('/random', 'HomeController@index');
 Route::get('/newest', 'HomeController@newest');
 Route::get('/popular', 'HomeController@popular');
 Route::get('/top-rated', 'HomeController@topRated');
-Route::get('/photos', 'PhotosController@myPhotos');
-Route::get('/photos/add', 'PhotosController@addPhoto');
+// Route::get('/photos', 'PhotosController@index');
+// Route::get('/photos/add', 'PhotosController@create');
+Route::resource('/photos', 'PhotosController');
 
 Auth::routes();
 // Route::get('/home', function () {

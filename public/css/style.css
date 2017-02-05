@@ -14,13 +14,21 @@ p.helper {
 	margin-bottom: 20px;
 }
 .thumbnails {
-	
+	text-align: center;
 }
 .thumbnail-container {
   margin-bottom: 10px;
   width: 25%;
   float: left;
   padding: 5px;
+}
+.img-thumbnail {
+  width: 350px !important;
+  height: 233px !important;
+  max-width: 100%;
+  object-fit: cover;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 .footer {
 	background-color: #f5f5f5;
@@ -35,6 +43,9 @@ p.helper {
 	width: 100%;
 	padding: 50px;
 	border-radius: 4px;
+}
+.has-error .drag-and-drop {
+	border-color: #a94442;
 }
 .drag-and-drop:hover {
 	background-color: #f9f9f9;
@@ -51,4 +62,10 @@ p.helper {
 .image-preview img{
 	width: 100%;
 	margin-bottom: 5px;
+}
+.image {
+	max-width: 100%;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	padding: 4px;
 }

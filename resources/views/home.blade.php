@@ -13,9 +13,9 @@
 </div>
 <div class="container-fluid thumbnails">
     @foreach ($photos as $photo)
-        <div class="thumbnail-container">
-            <img src="storage/images/thumbnails/{{ $photo->name }}.jpg" alt="..." class="img-thumbnail">
-        </div>
+        <a href="{{ url('/photos') }}/{{ $photo->id }}"><img src="storage/images/thumbnails/{{ $photo->name }}.jpg" alt="..." class="img-thumbnail"></a>
     @endforeach
 </div>
 @endsection
+
+<!-- storage/images/thumbnails/{{ $photo->name }}.jpg -->

@@ -51,10 +51,15 @@
 	          @endif
 	        @endif
 	      </ul>
-	      <a class="btn btn-primary navbar-btn" href="{{ url('photos/add') }}" role="button"><i class="fa fa-plus" aria-hidden="true"></i> Add photo</a>
+	      <a class="btn btn-primary navbar-btn" href="{{ url('photos/create') }}" role="button"><i class="fa fa-plus" aria-hidden="true"></i> Add photo</a>
     	</div>
   	</nav>
 	</div>
+</div>
+<div class="container">
+	@if (Session::has('success'))
+		<div class="alert alert-success alert-dismissible fade in" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button> {{ Session::get('success') }} </div>
+	@endif
 </div>
 <!-- <div class="alert alert-info alert-dismissible fade in" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button> You are logged in! </div>  -->
 
@@ -100,6 +105,7 @@
       $("#image-preview-container").show();
 			$("#photo-input").hide();
     });
+
 </script>
 </body>
 </html>
