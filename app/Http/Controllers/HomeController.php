@@ -38,7 +38,7 @@ class HomeController extends Controller
 
     public function newest()
     {
-        $photos = Photo::all();
+        $photos = Photo::orderBy('created_at', 'desc')->get();
         $data = array(
                 'active' => 'newest', 
                 'title' => 'Newest',
@@ -61,7 +61,7 @@ class HomeController extends Controller
 
     public function topRated()
     {
-        $photos = Photo::orderBy('id', 'desc')->get();
+        $photos = Photo::orderBy('id', 'asc')->get();
         $data = array(
                 'active' => 'top-rated', 
                 'title' => 'Top rated',

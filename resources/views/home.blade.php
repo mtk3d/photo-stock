@@ -13,7 +13,7 @@
 </div>
 <div class="container-fluid thumbnails">
     @foreach ($photos as $photo)
-        <a href="{{ url('/photos') }}/{{ $photo->id }}"><img src="{{ Storage::url('images/thumbnails/'.$photo->name.'.jpeg') }}" alt="..." class="img-thumbnail"></a>
+        <a href="{{ url('/photos') }}/{{ $photo->id }}"><img src="{{ Storage::url('images/thumbnails/'.$photo->name.'.jpeg') }}" alt="{{ $photo->title }}" class="img-thumbnail"></a>
     @endforeach
 </div>
 @endsection

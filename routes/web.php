@@ -15,7 +15,6 @@
     return view('home', ['title'=>'Home', 'active' => 'random']);
 });*/
 
-
 Route::get('/', function () {
     return redirect('/random');
 });
@@ -23,9 +22,9 @@ Route::get('/random', 'HomeController@index');
 Route::get('/newest', 'HomeController@newest');
 Route::get('/popular', 'HomeController@popular');
 Route::get('/top-rated', 'HomeController@topRated');
-// Route::get('/photos', 'PhotosController@index');
-// Route::get('/photos/add', 'PhotosController@create');
 Route::resource('/photos', 'PhotosController');
+
+Route::get('/search', 'PhotosController@search');
 
 Auth::routes();
 // Route::get('/home', function () {

@@ -8,11 +8,11 @@
     	@if (Route::has('login'))
 		@if (Auth::check())
 			@if (Auth::id() == $photo->user_id)
-    			<div class="row" style="margin-top: 20px">
-    				<div class="col-md-1">
+    			<div class="row" style="margin-top: 20px; padding-left: 15px;">
+    				<div class="image-button">
     					<a class="btn btn-primary" href="{{ url('/photos') }}/{{ $photo->id }}/edit" role="button"><i class="fa fa-edit" aria-hidden="true"></i> Edit</a>
     				</div>
-    				<div class="col-md-1">
+    				<div class="image-button">
     					<form action="/photos/{{ $photo->id }}" method="POST">
     						{{ csrf_field() }}
     						{{ method_field('DELETE') }}
@@ -24,7 +24,7 @@
     		@endif
     	@endif
     	<h1>{{ $photo->title }}</h1>
-    	<small><strong>Uploaded by {{ $user->name }}</strong></small>
+    	<small><strong>Uploaded by {{ $user->name }}</strong> <span class="badge">{{ $photo->views }} views</span></small>
     	<p>{{ $photo->description }}</p>
 </div>
 @endsection

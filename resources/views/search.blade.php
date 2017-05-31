@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="container">
-    	<h1>My photos</h1>
+    	<h1>Search: {{ $query }}</h1>
 </div>
 <div class="container-fluid thumbnails">
     	@foreach ($photos as $photo)
